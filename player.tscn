@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://8di5onaws0il"]
+
+[ext_resource type="Script" path="res://PlayerLogic.gd" id="1_kl44c"]
+[ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://Sprite-0001.png" id="2_be8hn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g7sb"]
+atlas = ExtResource("2_be8hn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaaal"]
+atlas = ExtResource("2_be8hn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbnhi"]
+atlas = ExtResource("2_be8hn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_layw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g7sb")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaaal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbnhi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmwqd"]
+radius = 28.2843
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8nmf"]
+radius = 32.1403
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8swd"]
+atlas = ExtResource("2_be8hn")
+region = Rect2(65, 0, 15, 15)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kl44c")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_layw4")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.149951
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jmwqd")
+debug_color = Color(0.717647, 0.568627, 0, 0.415686)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_v8nmf")
+
+[node name="HealthBarBg" type="Sprite2D" parent="."]
+modulate = Color(0.0313726, 0, 0, 1)
+texture_filter = 1
+position = Vector2(0, 40)
+scale = Vector2(4, 0.4)
+texture = SubResource("AtlasTexture_u8swd")
+
+[node name="HealthBar" type="Sprite2D" parent="."]
+modulate = Color(0.0313726, 0.843137, 0, 1)
+texture_filter = 1
+position = Vector2(0, 40)
+scale = Vector2(2, 0.4)
+texture = SubResource("AtlasTexture_u8swd")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://j3pu1ygy0ul4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ip41n"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7sx86"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rnkvr"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n6qwr"]
+
+[node name="Border" type="StaticBody2D"]
+scale = Vector2(9.5, 5.5)
+
+[node name="Left" type="CollisionShape2D" parent="."]
+position = Vector2(-100, 0)
+shape = SubResource("WorldBoundaryShape2D_ip41n")
+debug_color = Color(0.179448, 0.866645, 1, 0.42)
+
+[node name="Up" type="CollisionShape2D" parent="."]
+position = Vector2(0, -100)
+shape = SubResource("WorldBoundaryShape2D_7sx86")
+
+[node name="Right" type="CollisionShape2D" parent="."]
+position = Vector2(100, 0)
+shape = SubResource("WorldBoundaryShape2D_rnkvr")
+
+[node name="Down" type="CollisionShape2D" parent="."]
+position = Vector2(0, 100)
+shape = SubResource("WorldBoundaryShape2D_n6qwr")
