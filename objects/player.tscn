@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://8di5onaws0il"]
+[gd_scene load_steps=11 format=3 uid="uid://8di5onaws0il"]
 
-[ext_resource type="Script" path="res://PlayerLogic.gd" id="1_kl44c"]
-[ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://Sprite-0001.png" id="2_be8hn"]
+[ext_resource type="Script" path="res://scripts/PlayerLogic.gd" id="1_kl44c"]
+[ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://assets/Sprite-0001.png" id="2_be8hn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8g7sb"]
 atlas = ExtResource("2_be8hn")
@@ -47,6 +47,10 @@ radius = 32.1403
 atlas = ExtResource("2_be8hn")
 region = Rect2(65, 0, 15, 15)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgg5s"]
+atlas = ExtResource("2_be8hn")
+region = Rect2(64, 0, 16, 16)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kl44c")
 
@@ -59,7 +63,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_layw4")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.149951
+frame_progress = 0.688437
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jmwqd")
@@ -85,5 +89,12 @@ texture_filter = 1
 position = Vector2(0, 40)
 scale = Vector2(2, 0.4)
 texture = SubResource("AtlasTexture_u8swd")
+
+[node name="Aim" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Aim"]
+texture_filter = 1
+position = Vector2(40, 0)
+texture = SubResource("AtlasTexture_pgg5s")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

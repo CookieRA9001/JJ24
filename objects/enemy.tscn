@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbi2ve8kbr8mh"]
 
-[ext_resource type="Script" path="res://EnemyLogic.gd" id="1_kkd2c"]
-[ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://Sprite-0001.png" id="2_8r555"]
-[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://hurt_box.tscn" id="3_fksk0"]
+[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_kkd2c"]
+[ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://assets/Sprite-0001.png" id="2_8r555"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_fksk0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_602o7"]
 atlas = ExtResource("2_8r555")

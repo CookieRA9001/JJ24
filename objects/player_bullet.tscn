@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5d6o2rrvercv"]
+
+[ext_resource type="Script" path="res://objects/PlayerBullet.gd" id="1_wfj81"]
+[ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://assets/Sprite-0001.png" id="1_wsv4a"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="2_xpqwt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kxdw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aie5x"]
+atlas = ExtResource("1_wsv4a")
+region = Rect2(34.1602, 2.8647, 8.64835, 8.10783)
+
+[node name="PlayerBullet" type="RigidBody2D"]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_wfj81")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4kxdw")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_aie5x")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_xpqwt")]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 2

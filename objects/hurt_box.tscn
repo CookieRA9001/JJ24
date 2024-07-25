@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://br01eprafwf0o"]
 
-[ext_resource type="Script" path="res://HurtBox.gd" id="1_scxix"]
+[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="1_ikels"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7spef"]
 radius = 21.0
@@ -8,7 +8,7 @@ radius = 21.0
 [node name="HurtBox" type="Area2D"]
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("1_scxix")
+script = ExtResource("1_ikels")
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7spef")

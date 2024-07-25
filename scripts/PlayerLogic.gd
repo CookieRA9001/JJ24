@@ -4,10 +4,11 @@ const SPEED: float = 300.0
 @onready var camera_2d = $Camera2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_bar = $HealthBar
+@onready var aim = $Aim
 
 @export var maxHealth := 10.0
 @export var health := maxHealth
-@export var isHit = false
+@export var damage := 1.0
 
 func _ready():
 	health = 1
@@ -25,6 +26,14 @@ func _physics_process(delta):
 	animated_sprite_2d.flip_h = velocity.x > 0
 
 	move_and_slide()
+
+func _process(delta):
+	aim.rotation = get_angle_to(get_global_mouse_position())
+	if Input.is_action_pressed("Click"):
+		var bullet = load("res://objects/player_bullet.tscn").instantiate()
+		add_child(bullet)
+		bullet.init(damage, (get_global_mouse_position()-global_position).normalized(), 40000)
+		
 	
 func updateHealth(delta):
 	health += delta

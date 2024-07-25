@@ -2,7 +2,6 @@ extends Area2D
 
 @export var Damage: = 1.0
 @export var DamageTime: = 0.5
-@export var Size: = 1.0
 @onready var timer = $Timer
 @onready var hurt_box = $HurtBox
 

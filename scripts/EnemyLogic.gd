@@ -19,3 +19,6 @@ func _physics_process(delta):
 	
 func updateHealth(delta):
 	Health += delta
+	
+	if Health<=0:
+		queue_free()
