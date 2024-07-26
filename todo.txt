@@ -5,8 +5,7 @@ x upgrade menu
 x upgrade pickups
 x fire wall
 x trodgen
-* folders
-* internet download
+x folders
 * computer worm
 * windows defender shield
 * tmp
@@ -27,6 +26,8 @@ x trodgen
 * death screen
 * menus
 * animate
+* curropted folders
+* internet download
 
 * custom desktop
 * opening cut scean
@@ -37,4 +38,5 @@ x trodgen
 * junk cleaner
 * hacker (boss?)
 * setting, bios, kernal level
+* closing folders does something like killing enemies that are in it
 

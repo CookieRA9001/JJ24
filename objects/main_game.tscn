@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/UpgradeMenu.gd" id="5_4naak"]
 [ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="6_oq557"]
 [ext_resource type="PackedScene" uid="uid://v08mf62mw32k" path="res://objects/upgrade.tscn" id="7_0781e"]
-[ext_resource type="PackedScene" uid="uid://dweark3x7tq1n" path="res://objects/enemy_trojan.tscn" id="8_b2a2b"]
+[ext_resource type="PackedScene" uid="uid://dhailrcfl2xjw" path="res://objects/folder.tscn" id="8_1uyc4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f0g3"]
 
@@ -87,6 +87,7 @@ script = ExtResource("1_nud8i")
 Player = NodePath("Player")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -10
 scale = Vector2(2, 2)
 texture = ExtResource("2_16aad")
 
@@ -388,9 +389,7 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ywt3a")
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("GM") instance=ExtResource("8_b2a2b")]
-position = Vector2(-581, -307)
-GM = NodePath("..")
+[node name="Folder" parent="." instance=ExtResource("8_1uyc4")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_0_pressed"]
