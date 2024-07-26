@@ -38,6 +38,9 @@ extends Panel
 
 var items = [null, null, null]
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func rollUpgrades():
 	for i in 3:
 		items[i] = upgrades[int(randi()%upgrades.size())]
