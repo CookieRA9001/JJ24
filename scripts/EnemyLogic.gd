@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var body = $Body
-enum TYPES {VIRUS, TROJAN}
+enum TYPES {VIRUS, TROJAN, WORM, WORM_PART}
 
 @export var speed = 250.0
 @export var damage = 2
@@ -51,7 +51,6 @@ func updateHealth(delta):
 func _on_trojen_move_timeout():
 	target = position + Vector2(randi()%1000 - 500, randi()%1000 - 500)
 	
-
 func _on_spawn_enemies_timeout():
 	var obj = load("res://objects/enemy_weak.tscn")
 	for i in spawnCount:

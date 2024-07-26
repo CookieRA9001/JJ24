@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsr0gbpgn50ct"]
+
+[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_mdgmw"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_3kgof"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_tbe2s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_602o7"]
+atlas = ExtResource("2_3kgof")
+region = Rect2(909.905, 146.879, 92.9825, 95.8792)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cs4v8"]
+radius = 18.0278
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_as6sj"]
+radius = 41.0488
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8388608
+collision_mask = 8388608
+script = ExtResource("1_mdgmw")
+damage = 1
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Body"]
+modulate = Color(0.837205, 0.800439, 0.25025, 1)
+z_index = -1
+texture_filter = 1
+texture = SubResource("AtlasTexture_602o7")
+
+[node name="-" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cs4v8")
+debug_color = Color(0.565936, 0.622628, 0, 0.42)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_tbe2s")]
+scale = Vector2(1.77631, 1.77631)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_as6sj")

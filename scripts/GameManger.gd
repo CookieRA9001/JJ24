@@ -1,10 +1,13 @@
 extends Node2D
 
+@onready var rich_text_label = $CanvasLayer/RichTextLabel
+
 @export var PlayerPos: Vector2 = Vector2(0,0)
 @export var Player: CharacterBody2D
 @onready var spawn_timer = $SpawnTimer
 @export var Level = 0
 @export var Round = 0
+@export var TimePassed = 0
 
 @export var Waves = [
 	[
@@ -41,7 +44,8 @@ func _ready():
 func _process(delta):
 	if Player != null:
 		PlayerPos = Player.position
-
+		TimePassed += delta
+	rich_text_label.text = ("[center]" if TimePassed >= 600 else "[center]0") + str(int(TimePassed/60)) + ":" + ("" if int(TimePassed)%60 >= 10 else "0") + str(int(TimePassed) % 60)
 
 func _on_spawn_timer_timeout():
 	var wave = Waves[Level][Round]

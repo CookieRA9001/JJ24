@@ -105,6 +105,16 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.08
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center] 00:00"
+metadata/_edit_use_anchors_ = true
+
 [node name="UpgradeMenu" type="Panel" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.15
@@ -390,6 +400,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_ywt3a")
 
 [node name="Folder" parent="." instance=ExtResource("8_1uyc4")]
+position = Vector2(-306, -134)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_0_pressed"]
