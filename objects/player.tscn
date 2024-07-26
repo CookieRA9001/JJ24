@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://8di5onaws0il"]
+[gd_scene load_steps=14 format=3 uid="uid://8di5onaws0il"]
 
 [ext_resource type="Script" path="res://scripts/PlayerLogic.gd" id="1_kl44c"]
 [ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://assets/Sprite-0001.png" id="2_be8hn"]
 [ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_vgiky"]
+[ext_resource type="PackedScene" uid="uid://bqm1ti7hwqrn3" path="res://objects/camera.tscn" id="3_klg00"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sn2sj"]
 resource_local_to_scene = true
@@ -68,8 +69,7 @@ texture_filter = 1
 position = Vector2(0, -40)
 texture = SubResource("AtlasTexture_vekx2")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+[node name="Camera" parent="." instance=ExtResource("3_klg00")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 29)

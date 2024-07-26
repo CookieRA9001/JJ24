@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-@onready var camera_2d = $Camera2D
+@onready var camera_2d = $Camera
 @onready var health_bar = $HealthBar
 @onready var xp_bar = $XPBar
 @onready var aim = $Aim
 @onready var body = $Body
 @onready var shoot_time = $Aim/ShootTime
+@onready var upgrade_menu:Panel = $"../CanvasLayer/UpgradeMenu"
 
 @export var maxHealth := 10.0
 @export var health := maxHealth
@@ -13,10 +14,11 @@ extends CharacterBody2D
 @export var xp := 0.0
 @export var level := 1
 @export var nextLevel := 10.0
-@export var speed: float = 300.0
+@export var speed: float = 350.0
 
 func _ready():
 	health = 1
+	upgrade_menu.visible = false
 	updateHealth(maxHealth)
 
 func _physics_process(delta):
@@ -71,4 +73,6 @@ func levelUp():
 	health = maxHealth
 	speed += 10
 	shoot_time.wait_time = 0.5 / (0.98 + 0.02*level)
+	
+	upgrade_menu.rollUpgrades()
 	
