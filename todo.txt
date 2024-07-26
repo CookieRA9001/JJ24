@@ -1,4 +1,4 @@
-* enemy spawning + waves
+x enemy spawning + waves
 * exp
 * leveling up + stat upgrading
 * upgrade menu
@@ -24,6 +24,7 @@
 * vangard
 * load times
 * corrupted files
+* death screen
 * menus
 * animate
 

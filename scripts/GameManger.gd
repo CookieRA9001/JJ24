@@ -44,7 +44,6 @@ func _process(delta):
 
 
 func _on_spawn_timer_timeout():
-	print("ping")
 	var wave = Waves[Level][Round]
 	
 	if wave.time!=0:

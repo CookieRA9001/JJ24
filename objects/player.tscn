@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8di5onaws0il"]
+[gd_scene load_steps=13 format=3 uid="uid://8di5onaws0il"]
 
 [ext_resource type="Script" path="res://scripts/PlayerLogic.gd" id="1_kl44c"]
 [ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://assets/Sprite-0001.png" id="2_be8hn"]
@@ -34,6 +34,9 @@ region = Rect2(65, 0, 15, 15)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgg5s"]
 atlas = ExtResource("2_vgiky")
 region = Rect2(326.73, 12.3828, 52.7154, 81.166)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gsnhm"]
+radius = 62.0725
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kl44c")
@@ -107,4 +110,13 @@ texture = SubResource("AtlasTexture_pgg5s")
 wait_time = 0.5
 one_shot = true
 
+[node name="ExpCollector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExpCollector"]
+shape = SubResource("CircleShape2D_gsnhm")
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="area_entered" from="ExpCollector" to="." method="_on_exp_collector_area_entered"]
+[connection signal="body_entered" from="ExpCollector" to="." method="_on_exp_collector_body_entered"]

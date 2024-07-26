@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlajppe78bl87"]
+[gd_scene load_steps=7 format=3 uid="uid://dlajppe78bl87"]
 
 [ext_resource type="Script" path="res://scripts/GameManger.gd" id="1_nud8i"]
 [ext_resource type="Texture2D" uid="uid://4sgkbn1gihty" path="res://assets/Screenshot 2024-07-25 165852.png" id="2_16aad"]
 [ext_resource type="PackedScene" uid="uid://8di5onaws0il" path="res://objects/player.tscn" id="3_f1aar"]
 [ext_resource type="PackedScene" uid="uid://j3pu1ygy0ul4" path="res://objects/border.tscn" id="4_7j68f"]
 [ext_resource type="PackedScene" uid="uid://dbi2ve8kbr8mh" path="res://objects/enemy.tscn" id="6_uhtqu"]
+[ext_resource type="PackedScene" uid="uid://befibf21gerdg" path="res://objects/exp.tscn" id="6_ynjgl"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("Player")]
 script = ExtResource("1_nud8i")
@@ -26,5 +27,8 @@ GM = NodePath("..")
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="Exp" parent="." instance=ExtResource("6_ynjgl")]
+position = Vector2(-450, 150)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

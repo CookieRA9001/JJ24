@@ -10,6 +10,7 @@ const SPEED: float = 300.0
 @export var maxHealth := 10.0
 @export var health := maxHealth
 @export var damage := 1.0
+@export var xp := 0.0
 
 func _ready():
 	health = 1
@@ -46,3 +47,6 @@ func updateHealth(delta):
 	
 	if health<=0:
 		queue_free()
+
+func _on_exp_collector_body_entered(body):
+	body.Target = self
