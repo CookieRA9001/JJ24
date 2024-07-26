@@ -1,6 +1,6 @@
 x enemy spawning + waves
-* exp
-* leveling up + stat upgrading
+x exp
+x leveling up + stat upgrading
 * upgrade menu
 * upgrade pickups
 * fire wall
