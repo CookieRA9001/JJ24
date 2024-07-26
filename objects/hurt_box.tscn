@@ -18,6 +18,10 @@ debug_color = Color(0.93848, 0.232103, 0.234118, 0.42)
 wait_time = 0.5
 one_shot = true
 
+[node name="DeathTime" type="Timer" parent="."]
+wait_time = 10000.0
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeathTime" to="." method="_on_death_time_timeout"]

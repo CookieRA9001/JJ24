@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 const SPEED: float = 300.0
 @onready var camera_2d = $Camera2D
-@onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_bar = $HealthBar
 @onready var aim = $Aim
+@onready var body = $Body
+@onready var shoot_time = $Aim/ShootTime
 
 @export var maxHealth := 10.0
 @export var health := maxHealth
@@ -23,17 +24,21 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		
-	animated_sprite_2d.flip_h = velocity.x > 0
+	if velocity.x > 0:
+		body.scale.x = -1
+	else:
+		body.scale.x = 1
 
 	move_and_slide()
 
 func _process(delta):
 	aim.rotation = get_angle_to(get_global_mouse_position())
-	if Input.is_action_pressed("Click"):
+	
+	if Input.is_action_pressed("Click") and shoot_time.is_stopped():
 		var bullet = load("res://objects/player_bullet.tscn").instantiate()
-		add_child(bullet)
-		bullet.init(damage, (get_global_mouse_position()-global_position).normalized(), 40000)
-		
+		get_tree().get_root().add_child(bullet)
+		bullet.init(position, damage, (get_global_mouse_position()-global_position).normalized(), 40000)
+		shoot_time.start()
 	
 func updateHealth(delta):
 	health += delta
