@@ -6,7 +6,7 @@ extends Panel
 @onready var rich_text_label2 = $TextureRect/Panel2/RichTextLabel
 @onready var texture_rect3 = $TextureRect/Panel3/TextureRect
 @onready var rich_text_label3 = $TextureRect/Panel3/RichTextLabel
-
+@onready var player = $"../../Player"
 
 @export var upgrades = [
 	{
@@ -57,7 +57,11 @@ func rollUpgrades():
 	
 func buyItem(i):
 	match items[i].id:
-		"firewall": pass
+		"firewall": 
+			if player.firewallLevel == 0:
+				player.intiFireWall()
+			player.firewallLevel += 1
+			pass
 		"defender": pass
 		"tmp": pass
 		"encryption": pass

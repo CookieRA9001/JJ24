@@ -18,11 +18,11 @@ extends Node2D
 		},
 		{
 			"time": 20,
-			"enemies": [15, "virus"]
+			"enemies": [10, "virus", 1, "trojen"]
 		},
 		{
 			"time": 30,
-			"enemies": [20, "virus"]
+			"enemies": [20, "virus", 3, "trojen"]
 		},
 		{
 			"time": 10,
@@ -30,7 +30,7 @@ extends Node2D
 		},
 		{
 			"time": 0,
-			"enemies": [1, "end"]
+			"enemies": [1, "end", 20, "trojen"]
 		}
 	]
 ]
@@ -58,6 +58,8 @@ func _on_spawn_timer_timeout():
 		match enemy:
 			"virus":
 				enemy = load("res://objects/enemy.tscn")
+			"trojen":
+				enemy = load("res://objects/enemy_trojan.tscn")
 			"end":
 				enemy = load("res://objects/enemy.tscn") # :P
 		

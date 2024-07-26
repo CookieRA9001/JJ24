@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://vxmn2lq1m7e3"]
+
+[ext_resource type="Script" path="res://scripts/FireWall.gd" id="1_b66jd"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_hblar"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_sqr6f"]
+
+[sub_resource type="Gradient" id="Gradient_bxfuu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qaoaw"]
+gradient = SubResource("Gradient_bxfuu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f80vk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 300, 1)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_qaoaw")
+turbulence_noise_strength = 7.21
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul481"]
+atlas = ExtResource("2_hblar")
+region = Rect2(658.306, 31.5022, 62.3425, 89.9089)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c22fo"]
+atlas = ExtResource("2_hblar")
+region = Rect2(732.535, 56.3465, 30.493, 50.8218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oef2n"]
+size = Vector2(100, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lppf"]
+size = Vector2(150, 650)
+
+[node name="FireWall" type="Node2D"]
+script = ExtResource("1_b66jd")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_f80vk")
+texture = SubResource("AtlasTexture_ul481")
+randomness = 0.1
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_f80vk")
+texture = SubResource("AtlasTexture_c22fo")
+randomness = 0.1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8388608
+collision_mask = 8388608
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_oef2n")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_sqr6f")]
+collision_layer = 16
+collision_mask = 8
+DeathTime = 1000
+
+[node name="HurtBox" parent="HurtBox" index="0"]
+position = Vector2(0, -0.416665)
+shape = SubResource("RectangleShape2D_8lppf")
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+
+[editable path="HurtBox"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5d6o2rrvercv"]
 
-[ext_resource type="Script" path="res://objects/PlayerBullet.gd" id="1_wfj81"]
+[ext_resource type="Script" path="res://scripts/PlayerBullet.gd" id="1_wfj81"]
 [ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_0ay7h"]
 [ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="2_xpqwt"]
 
@@ -29,3 +29,5 @@ collision_layer = 16
 collision_mask = 8
 DeathTime = 3
 Pierce = 1
+
+[editable path="HurtBox"]

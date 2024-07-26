@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var body = $Body
 @onready var shoot_time = $Aim/ShootTime
 @onready var upgrade_menu:Panel = $"../CanvasLayer/UpgradeMenu"
+@onready var fire_wall_timer = $UpgradeStuff/FireWallTimer
 
 @export var maxHealth := 10.0
 @export var health := maxHealth
@@ -15,6 +16,7 @@ extends CharacterBody2D
 @export var level := 1
 @export var nextLevel := 10.0
 @export var speed: float = 350.0
+@export var firewallLevel: int = 0
 
 func _ready():
 	health = 1
@@ -73,6 +75,21 @@ func levelUp():
 	health = maxHealth
 	speed += 10
 	shoot_time.wait_time = 0.5 / (0.98 + 0.02*level)
+	updateHealth(0)
 	
+	upgrade()
+
+func upgrade():
 	upgrade_menu.rollUpgrades()
-	
+
+func intiFireWall():
+	fire_wall_timer.start()
+
+func _on_fire_wall_timer_timeout():
+	var firewall = load("res://objects/fire_wall.tscn").instantiate()
+	get_tree().get_root().add_child(firewall)
+	var lookDir = (get_global_mouse_position()-global_position).normalized()
+	firewall.global_position = global_position + lookDir*400
+	firewall.level = firewallLevel
+	firewall.rotation = get_angle_to(get_global_mouse_position())
+	fire_wall_timer.start()

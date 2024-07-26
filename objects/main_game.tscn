@@ -1,11 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://dlajppe78bl87"]
+[gd_scene load_steps=28 format=3 uid="uid://dlajppe78bl87"]
 
 [ext_resource type="Script" path="res://scripts/GameManger.gd" id="1_nud8i"]
 [ext_resource type="Texture2D" uid="uid://4sgkbn1gihty" path="res://assets/Screenshot 2024-07-25 165852.png" id="2_16aad"]
 [ext_resource type="PackedScene" uid="uid://8di5onaws0il" path="res://objects/player.tscn" id="3_f1aar"]
 [ext_resource type="PackedScene" uid="uid://j3pu1ygy0ul4" path="res://objects/border.tscn" id="4_7j68f"]
-[ext_resource type="Script" path="res://objects/UpgradeMenu.gd" id="5_4naak"]
+[ext_resource type="Script" path="res://scripts/UpgradeMenu.gd" id="5_4naak"]
 [ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="6_oq557"]
+[ext_resource type="PackedScene" uid="uid://v08mf62mw32k" path="res://objects/upgrade.tscn" id="7_0781e"]
+[ext_resource type="PackedScene" uid="uid://dweark3x7tq1n" path="res://objects/enemy_trojan.tscn" id="8_b2a2b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f0g3"]
 
@@ -89,6 +91,9 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_16aad")
 
 [node name="Player" parent="." instance=ExtResource("3_f1aar")]
+
+[node name="Upgrade" parent="." instance=ExtResource("7_0781e")]
+position = Vector2(-403, 88)
 
 [node name="Border" parent="." instance=ExtResource("4_7j68f")]
 scale = Vector2(19, 11)
@@ -382,6 +387,10 @@ offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ywt3a")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("GM") instance=ExtResource("8_b2a2b")]
+position = Vector2(-581, -307)
+GM = NodePath("..")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_0_pressed"]

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var body = $Body
+enum TYPES {VIRUS, TROJAN}
 
 @export var speed = 250.0
 @export var damage = 2
@@ -8,19 +9,28 @@ extends CharacterBody2D
 @export var health := maxHealth
 @export var value := 5
 @export var GM: Node
+@export var enemyType = TYPES.VIRUS
+@export var target:Vector2
+@export var spawnCount:int = 0
 
 func _ready():
 	health = maxHealth
 
 func _physics_process(delta):
-	if GM.PlayerPos != null:
-		velocity = (GM.PlayerPos - position).normalized() * speed
+	match enemyType:
+		TYPES.VIRUS:
+			if GM.PlayerPos != null:
+				target = GM.PlayerPos
+		TYPES.TROJAN:
+			pass
+
+	velocity = (target - position).normalized() * speed
 		
 	if velocity.x > 0:
 		body.scale.x = -1
 	else:
 		body.scale.x = 1
-		
+				
 	move_and_slide()
 	
 func updateHealth(delta):
@@ -37,3 +47,15 @@ func updateHealth(delta):
 			get_tree().get_root().add_child(exp)
 			
 		queue_free()
+
+func _on_trojen_move_timeout():
+	target = position + Vector2(randi()%1000 - 500, randi()%1000 - 500)
+	
+
+func _on_spawn_enemies_timeout():
+	var obj = load("res://objects/enemy_weak.tscn")
+	for i in spawnCount:
+		var o = obj.instantiate()
+		o.position = position + Vector2(randi()%400-200, randi()%400-200)
+		o.GM = GM
+		get_tree().get_root().add_child(o)

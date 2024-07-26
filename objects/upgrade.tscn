@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://v08mf62mw32k"]
+
+[ext_resource type="Script" path="res://scripts/UpgradeLogic.gd" id="1_dwfqs"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_wtef4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb5lw"]
+atlas = ExtResource("2_wtef4")
+region = Rect2(276.422, 521.106, 97.0338, 105.897)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgf14"]
+radius = 35.0571
+
+[node name="Upgrade" type="RigidBody2D"]
+collision_layer = 32
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp = 1.0
+script = ExtResource("1_dwfqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_cb5lw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bgf14")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

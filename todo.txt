@@ -1,10 +1,10 @@
 x enemy spawning + waves
 x exp
 x leveling up + stat upgrading
-* upgrade menu
-* upgrade pickups
-* fire wall
-* trodgen
+x upgrade menu
+x upgrade pickups
+x fire wall
+x trodgen
 * folders
 * internet download
 * computer worm
