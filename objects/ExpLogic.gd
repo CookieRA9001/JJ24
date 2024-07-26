@@ -17,5 +17,6 @@ func _physics_process(delta):
 	linear_velocity = (Target.position - position).normalized() * speed
 
 func _on_body_entered(body):
-	body.xp += value
-	queue_free()
+	if "xp" in body:
+		body.xp += value
+		queue_free()

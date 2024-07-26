@@ -19,6 +19,7 @@ collision_layer = 32
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
+linear_damp = 1.0
 script = ExtResource("1_mnrbr")
 altTex = SubResource("AtlasTexture_1us38")
 
