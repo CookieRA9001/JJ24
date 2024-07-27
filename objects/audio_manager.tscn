@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://bme8tkqjq7qes"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_buctw"]
+[ext_resource type="AudioStream" uid="uid://cpvqhkboq1ft5" path="res://sounds/julija.wav" id="2_ng44c"]
+[ext_resource type="AudioStream" uid="uid://b26qj8rdldq6w" path="res://sounds/shoot_sfx.wav" id="3_ng5v2"]
+[ext_resource type="AudioStream" uid="uid://dsnu30qg7t3jh" path="res://sounds/ding_sfx.wav" id="4_kvjku"]
+[ext_resource type="AudioStream" uid="uid://c0dqx1t1pe8mt" path="res://sounds/hit_sfx.wav" id="5_qe0i7"]
+[ext_resource type="AudioStream" uid="uid://cpetirqo1mr6d" path="res://sounds/lvlup_sfx.wav" id="6_x1cj3"]
+[ext_resource type="AudioStream" uid="uid://dxel1pd0307yb" path="res://sounds/playerhit_sfx.wav" id="7_mcp2a"]
+[ext_resource type="AudioStream" uid="uid://b0hglutdj0ira" path="res://sounds/enemydeath_sfx.wav" id="8_iyhym"]
+[ext_resource type="AudioStream" uid="uid://b7am0lrpuqt4k" path="res://sounds/playerdie_sfx.wav" id="9_nf2sh"]
+[ext_resource type="AudioStream" uid="uid://kaa4cxclxnyc" path="res://sounds/click_sfx.wav" id="10_hyktj"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_buctw")
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ng44c")
+volume_db = -17.801
+autoplay = true
+
+[node name="Effects_player" type="Node" parent="."]
+
+[node name="effect_player_1" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("3_ng5v2")
+volume_db = -12.076
+
+[node name="effect_player_2" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("4_kvjku")
+volume_db = -10.265
+
+[node name="effect_player_3" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("5_qe0i7")
+volume_db = -9.905
+
+[node name="effect_player_4" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("6_x1cj3")
+volume_db = -3.318
+pitch_scale = 0.82
+
+[node name="effect_player_5" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("7_mcp2a")
+volume_db = -8.914
+pitch_scale = 1.03
+
+[node name="effect_player_6" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("8_iyhym")
+volume_db = -17.828
+pitch_scale = 0.7
+
+[node name="effect_player_7" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("9_nf2sh")
+
+[node name="effect_player_8" type="AudioStreamPlayer2D" parent="Effects_player"]
+stream = ExtResource("10_hyktj")
+volume_db = 16.838
+pitch_scale = 2.44

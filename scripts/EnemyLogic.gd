@@ -35,8 +35,11 @@ func _physics_process(delta):
 	
 func updateHealth(delta):
 	health += delta
+	if health>=0:
+		GM.find_child("AudioManager")._on_enemy_play_hit()
 	
 	if health<=0:
+		GM.find_child("AudioManager")._on_enemy_play_die()
 		var exp_count:int = int(randi() % 5) + 2
 		var expObject = load("res://objects/exp.tscn")
 		for i in exp_count:

@@ -18,10 +18,16 @@ extends CharacterBody2D
 @export var speed: float = 350.0
 @export var firewallLevel: int = 0
 
+signal play_shoot
+signal play_ding
+signal play_lvl
+signal play_hurt
+signal play_rip
+
 func _ready():
-	health = 1
+	health = maxHealth
 	upgrade_menu.visible = false
-	updateHealth(maxHealth)
+	updateHealth(0)
 
 func _physics_process(delta):
 	var direction = Vector2(Input.get_axis("Left", "Right"),Input.get_axis("Up", "Down")).normalized()
@@ -47,28 +53,40 @@ func _process(delta):
 		get_tree().get_root().add_child(bullet)
 		bullet.init(position, damage, (get_global_mouse_position()-global_position).normalized(), 40000)
 		shoot_time.start()
-	
-	# exp
-	xp_bar.scale.x = min(xp/nextLevel * 4,4)
-	# level up
-	if xp >= nextLevel:
-		levelUp()
+		play_shoot.emit()
 		
+	addXP(0)
 	
 func updateHealth(delta):
 	health += delta
 	health_bar.scale.x = health/maxHealth * 4
 	
+	if delta<0:
+		play_hurt.emit()
+	
 	if health<=0:
+		play_rip.emit()
 		queue_free()
 
 func _on_exp_collector_body_entered(body):
 	body.Target = self
 	
+func addXP(delta):
+	if delta>0:
+		play_ding.emit()
+	xp += delta
+	xp_bar.scale.x = min(xp/nextLevel * 4,4)
+	# level up
+	if xp >= nextLevel:
+		levelUp()
+		
 func levelUp():
+	play_lvl.emit()
 	xp -= nextLevel
 	level += 1
 	nextLevel *= 1.25
+	print(xp)
+	print(nextLevel)
 	
 	damage += 0.1
 	maxHealth += 1

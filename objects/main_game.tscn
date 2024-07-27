@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dlajppe78bl87"]
+[gd_scene load_steps=29 format=3 uid="uid://dlajppe78bl87"]
 
 [ext_resource type="Script" path="res://scripts/GameManger.gd" id="1_nud8i"]
 [ext_resource type="Texture2D" uid="uid://4sgkbn1gihty" path="res://assets/Screenshot 2024-07-25 165852.png" id="2_16aad"]
+[ext_resource type="PackedScene" uid="uid://bme8tkqjq7qes" path="res://objects/audio_manager.tscn" id="2_x8chv"]
 [ext_resource type="PackedScene" uid="uid://8di5onaws0il" path="res://objects/player.tscn" id="3_f1aar"]
 [ext_resource type="PackedScene" uid="uid://j3pu1ygy0ul4" path="res://objects/border.tscn" id="4_7j68f"]
 [ext_resource type="Script" path="res://scripts/UpgradeMenu.gd" id="5_4naak"]
@@ -85,6 +86,8 @@ region = Rect2(729.341, 259.272, 35.3218, 205.461)
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("Player")]
 script = ExtResource("1_nud8i")
 Player = NodePath("Player")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_x8chv")]
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
@@ -402,8 +405,14 @@ texture = SubResource("AtlasTexture_ywt3a")
 [node name="Folder" parent="." instance=ExtResource("8_1uyc4")]
 position = Vector2(-306, -134)
 
+[connection signal="play_ding" from="Player" to="AudioManager" method="_on_player_play_ding"]
+[connection signal="play_hurt" from="Player" to="AudioManager" method="_on_player_play_hurt"]
+[connection signal="play_lvl" from="Player" to="AudioManager" method="_on_player_play_lvl"]
+[connection signal="play_rip" from="Player" to="AudioManager" method="_on_player_play_rip"]
+[connection signal="play_shoot" from="Player" to="AudioManager" method="_on_player_play_shoot"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_0_pressed"]
+[connection signal="play_click" from="CanvasLayer/UpgradeMenu" to="AudioManager" method="_on_upgrade_menu_play_click"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_0_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel2/Button1" to="CanvasLayer/UpgradeMenu" method="_on_button_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel3/Button2" to="CanvasLayer/UpgradeMenu" method="_on_button_2_pressed"]

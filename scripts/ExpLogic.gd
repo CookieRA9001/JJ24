@@ -18,5 +18,5 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if "xp" in body:
-		body.xp += value
+		body.addXP(value)
 		queue_free()

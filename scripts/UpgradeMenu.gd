@@ -8,6 +8,8 @@ extends Panel
 @onready var rich_text_label3 = $TextureRect/Panel3/RichTextLabel
 @onready var player = $"../../Player"
 
+signal play_click
+
 @export var upgrades = [
 	{
 		"id": "firewall",
@@ -56,6 +58,7 @@ func rollUpgrades():
 	get_tree().paused = true
 	
 func buyItem(i):
+	play_click.emit()
 	match items[i].id:
 		"firewall": 
 			if player.firewallLevel == 0:
