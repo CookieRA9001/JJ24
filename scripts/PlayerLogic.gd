@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var shoot_time = $Aim/ShootTime
 @onready var upgrade_menu:Panel = $"../CanvasLayer/UpgradeMenu"
 @onready var fire_wall_timer = $UpgradeStuff/FireWallTimer
+@onready var defender = $Defender
+@onready var defender_hurt_box = $Defender/Shield/HurtBox
 
 @export var maxHealth := 10.0
 @export var health := maxHealth
@@ -17,6 +19,8 @@ extends CharacterBody2D
 @export var nextLevel := 10.0
 @export var speed: float = 350.0
 @export var firewallLevel: int = 0
+@export var defenderLevel: int = 0
+@export var tmpLevel: int = 0
 
 signal play_shoot
 signal play_ding
@@ -52,6 +56,7 @@ func _process(delta):
 		var bullet = load("res://objects/player_bullet.tscn").instantiate()
 		get_tree().get_root().add_child(bullet)
 		bullet.init(position, damage, (get_global_mouse_position()-global_position).normalized(), 40000)
+		bullet.setPierce(1 + tmpLevel)
 		shoot_time.start()
 		play_shoot.emit()
 		
@@ -71,8 +76,8 @@ func updateHealth(delta):
 func _on_exp_collector_body_entered(body):
 	body.Target = self
 	
-func addXP(delta):
-	if delta>0:
+func addXP(delta:float):
+	if delta>0.0:
 		play_ding.emit()
 	xp += delta
 	xp_bar.scale.x = min(xp/nextLevel * 4,4)
@@ -85,8 +90,6 @@ func levelUp():
 	xp -= nextLevel
 	level += 1
 	nextLevel *= 1.25
-	print(xp)
-	print(nextLevel)
 	
 	damage += 0.1
 	maxHealth += 1
@@ -102,6 +105,15 @@ func upgrade():
 
 func intiFireWall():
 	fire_wall_timer.start()
+
+func defenderLevelUp():
+	if defenderLevel == 0:
+		defender.set_process(true)
+		defender.visible = true
+	defender.speed += 5
+	defender_hurt_box.Damage += 0.2
+	defender_hurt_box.scale = Vector2(1+defenderLevel*0.1,1+defenderLevel*0.1)
+	defenderLevel += 1
 
 func _on_fire_wall_timer_timeout():
 	var firewall = load("res://objects/fire_wall.tscn").instantiate()

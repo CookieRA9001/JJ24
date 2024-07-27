@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://8di5onaws0il"]
+[gd_scene load_steps=19 format=3 uid="uid://8di5onaws0il"]
 
 [ext_resource type="Script" path="res://scripts/PlayerLogic.gd" id="1_kl44c"]
 [ext_resource type="Texture2D" uid="uid://cti3n7c0e80tg" path="res://assets/Sprite-0001.png" id="2_be8hn"]
 [ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_vgiky"]
 [ext_resource type="PackedScene" uid="uid://bqm1ti7hwqrn3" path="res://objects/camera.tscn" id="3_klg00"]
+[ext_resource type="Script" path="res://objects/Defender.gd" id="5_8namm"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="5_kb5gp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sn2sj"]
 resource_local_to_scene = true
@@ -38,6 +40,16 @@ region = Rect2(326.73, 12.3828, 52.7154, 81.166)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gsnhm"]
 radius = 62.0725
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd0pe"]
+atlas = ExtResource("2_vgiky")
+region = Rect2(786.342, 15.5132, 102.632, 100.579)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_utboa"]
+radius = 38.6005
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_drqqr"]
+radius = 49.2
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kl44c")
@@ -130,7 +142,34 @@ shape = SubResource("CircleShape2D_gsnhm")
 wait_time = 10.0
 one_shot = true
 
+[node name="Defender" type="Node2D" parent="."]
+script = ExtResource("5_8namm")
+
+[node name="Shield" type="Sprite2D" parent="Defender"]
+position = Vector2(188, 1)
+texture = SubResource("AtlasTexture_cd0pe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Defender/Shield"]
+collision_layer = 8388608
+collision_mask = 8388608
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Defender/Shield/StaticBody2D"]
+shape = SubResource("CircleShape2D_utboa")
+
+[node name="HurtBox" parent="Defender/Shield" instance=ExtResource("5_kb5gp")]
+collision_layer = 16
+collision_mask = 8
+Damage = 0.0
+DamageTime = 0.25
+DeathTime = 10000
+
+[node name="HurtBox" parent="Defender/Shield/HurtBox" index="0"]
+position = Vector2(0, -0.416665)
+shape = SubResource("CircleShape2D_drqqr")
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="area_entered" from="ExpCollector" to="." method="_on_exp_collector_area_entered"]
 [connection signal="body_entered" from="ExpCollector" to="." method="_on_exp_collector_body_entered"]
 [connection signal="timeout" from="UpgradeStuff/FireWallTimer" to="." method="_on_fire_wall_timer_timeout"]
+
+[editable path="Defender/Shield/HurtBox"]

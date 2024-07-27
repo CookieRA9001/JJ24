@@ -5,7 +5,7 @@ extends Node2D
 @export var isInArea := false
 @export var startOpen := false
 @export var fullOpen := false
-@export var value := 30
+@export var value := 30.0
 var openProgress := 0.9
 
 func _ready():
@@ -44,7 +44,7 @@ func spawnStuff():
 	var expObject = load("res://objects/exp.tscn")
 	for i in exp_count:
 		var exp = expObject.instantiate()
-		exp.value = value/exp_count
+		exp.value = value/float(exp_count)
 		exp.position = position + Vector2(randi()%400-200,randi()%400-200)
 		exp.apply_force(Vector2(randi()%30000-15000,randi()%30000-15000))
 		get_tree().get_root().add_child(exp)

@@ -36,6 +36,14 @@ func _process(delta):
 func _on_area_entered(area):
 	if "health" in area.get_parent() and not area.get_parent() in inArea:
 		inArea.append(area.get_parent())
+		area.get_parent().updateHealth(-Damage)
+		timer.start()
+		
+		if Pierce > 0:
+			Pierce -= 1
+			if Pierce == 0:
+				root.queue_free()
+				return
 
 func _on_area_exited(area):
 	if "health" in area.get_parent() and area.get_parent() in inArea:

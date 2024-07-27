@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://dlajppe78bl87"]
 
 [ext_resource type="Script" path="res://scripts/GameManger.gd" id="1_nud8i"]
-[ext_resource type="Texture2D" uid="uid://4sgkbn1gihty" path="res://assets/Screenshot 2024-07-25 165852.png" id="2_16aad"]
 [ext_resource type="PackedScene" uid="uid://bme8tkqjq7qes" path="res://objects/audio_manager.tscn" id="2_x8chv"]
 [ext_resource type="PackedScene" uid="uid://8di5onaws0il" path="res://objects/player.tscn" id="3_f1aar"]
+[ext_resource type="Texture2D" uid="uid://hc5mi03mtbw0" path="res://assets/jj24_2_dark.png" id="3_oew5d"]
 [ext_resource type="PackedScene" uid="uid://j3pu1ygy0ul4" path="res://objects/border.tscn" id="4_7j68f"]
 [ext_resource type="Script" path="res://scripts/UpgradeMenu.gd" id="5_4naak"]
 [ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="6_oq557"]
@@ -91,8 +91,8 @@ Player = NodePath("Player")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
-scale = Vector2(2, 2)
-texture = ExtResource("2_16aad")
+scale = Vector2(3, 3)
+texture = ExtResource("3_oew5d")
 
 [node name="Player" parent="." instance=ExtResource("3_f1aar")]
 
@@ -100,7 +100,7 @@ texture = ExtResource("2_16aad")
 position = Vector2(-403, 88)
 
 [node name="Border" parent="." instance=ExtResource("4_7j68f")]
-scale = Vector2(19, 11)
+scale = Vector2(50, 30)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
@@ -412,7 +412,7 @@ position = Vector2(-306, -134)
 [connection signal="play_shoot" from="Player" to="AudioManager" method="_on_player_play_shoot"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="play_click" from="CanvasLayer/UpgradeMenu" to="AudioManager" method="_on_upgrade_menu_play_click"]
-[connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_0_pressed"]
+[connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel/Button0" to="CanvasLayer/UpgradeMenu" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel2/Button1" to="CanvasLayer/UpgradeMenu" method="_on_button_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/UpgradeMenu/TextureRect/Panel3/Button2" to="CanvasLayer/UpgradeMenu" method="_on_button_2_pressed"]

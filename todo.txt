@@ -29,7 +29,7 @@ x folders
 * curropted folders
 * internet download
 
-* custom desktop
+x custom desktop
 * opening cut scean
 * rat wear
 * ransome wear

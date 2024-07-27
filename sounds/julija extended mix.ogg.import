@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bt0pnnlqh1idj"
+path="res://.godot/imported/julija extended mix.ogg-9fdf5268462b0cb81e7b8537a250b158.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/julija extended mix.ogg"
+dest_files=["res://.godot/imported/julija extended mix.ogg-9fdf5268462b0cb81e7b8537a250b158.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

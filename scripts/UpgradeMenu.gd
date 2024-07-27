@@ -18,12 +18,12 @@ signal play_click
 	},
 	{
 		"id": "defender",
-		"description": "[center][wave]Defender[/wave]\n-",
+		"description": "[center][wave]Defender[/wave]A shield that hurts and pushes enemies.\n-",
 		"image": null
 	},
 	{
 		"id": "tmp",
-		"description": "[center][wave]TMP Chip[/wave]\n-",
+		"description": "[center][wave]TMP Chip[/wave]Increases bullet pierce.\n-",
 		"image": null
 	},
 	{
@@ -64,9 +64,10 @@ func buyItem(i):
 			if player.firewallLevel == 0:
 				player.intiFireWall()
 			player.firewallLevel += 1
-			pass
-		"defender": pass
-		"tmp": pass
+		"defender":
+			player.defenderLevelUp()
+		"tmp": 
+			player.tmpLevel += 1
 		"encryption": pass
 		"passwords": pass
 	visible = false
