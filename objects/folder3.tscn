@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqbn0vl372jcg"]
+
+[ext_resource type="Script" path="res://scripts/FolderLogic.gd" id="1_wtw17"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_2ejwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4of6e"]
+atlas = ExtResource("2_2ejwg")
+region = Rect2(14.4356, 269.712, 94.1499, 106.025)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4phb1"]
+radius = 50.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hinnq"]
+atlas = ExtResource("2_2ejwg")
+region = Rect2(384, 128, 384, 384)
+
+[node name="Folder" type="Node2D"]
+script = ExtResource("1_wtw17")
+value = 250.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+texture = SubResource("AtlasTexture_4of6e")
+
+[node name="OpenZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpenZone"]
+shape = SubResource("CircleShape2D_4phb1")
+
+[node name="Window" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("AtlasTexture_hinnq")
+
+[connection signal="area_entered" from="OpenZone" to="." method="_on_open_zone_area_entered"]
+[connection signal="area_exited" from="OpenZone" to="." method="_on_open_zone_area_exited"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://4s6rthmj5uwu"]
+
+[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_vtf7u"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_gcdvy"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_vf6m2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bojtt"]
+atlas = ExtResource("2_gcdvy")
+region = Rect2(777.561, 268.097, 229.177, 224.102)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cs4v8"]
+radius = 65.0077
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_as6sj"]
+radius = 109.041
+
+[node name="Trojen" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.6, 1.6)
+collision_layer = 8388608
+collision_mask = 8388608
+script = ExtResource("1_vtf7u")
+speed = 200.0
+damage = 6
+maxHealth = 150.0
+value = 200.0
+enemyType = 1
+spawnCount = 10
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Body"]
+modulate = Color(0.3259, 0.00254341, 0, 1)
+texture_filter = 1
+texture = SubResource("AtlasTexture_bojtt")
+
+[node name="-" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cs4v8")
+debug_color = Color(0.565936, 0.622628, 0, 0.42)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_vf6m2")]
+scale = Vector2(4, 4)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_as6sj")
+
+[node name="TrojenMove" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="SpawnEnemies" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="TrojenMove" to="." method="_on_trojen_move_timeout"]
+[connection signal="timeout" from="SpawnEnemies" to="." method="_on_spawn_enemies_timeout"]

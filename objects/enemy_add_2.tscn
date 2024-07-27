@@ -24,8 +24,8 @@ collision_layer = 8388608
 collision_mask = 8388608
 script = ExtResource("1_s2fba")
 damage = 3
-maxHealth = 20.0
-value = 50.0
+maxHealth = 30.0
+value = 100.0
 
 [node name="Body" type="Node2D" parent="."]
 

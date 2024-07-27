@@ -24,34 +24,50 @@ autoplay = true
 [node name="effect_player_1" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("3_ng5v2")
 volume_db = -12.076
+max_distance = 50000.0
+attenuation = 0.0
 
 [node name="effect_player_2" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("4_kvjku")
 volume_db = -10.265
+max_distance = 50000.0
+attenuation = 1e-05
 
 [node name="effect_player_3" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("5_qe0i7")
 volume_db = -9.905
+max_distance = 50000.0
+attenuation = 0.0001
 
 [node name="effect_player_4" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("6_x1cj3")
 volume_db = -3.318
 pitch_scale = 0.82
+max_distance = 50000.0
+attenuation = 0.0001
 
 [node name="effect_player_5" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("7_mcp2a")
 volume_db = -8.914
 pitch_scale = 1.03
+max_distance = 50000.0
+attenuation = 0.0001
 
 [node name="effect_player_6" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("8_iyhym")
 volume_db = -17.828
 pitch_scale = 0.7
+max_distance = 50000.0
+attenuation = 0.0001
 
 [node name="effect_player_7" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("9_nf2sh")
+max_distance = 50000.0
+attenuation = 0.0001
 
 [node name="effect_player_8" type="AudioStreamPlayer2D" parent="Effects_player"]
 stream = ExtResource("10_hyktj")
 volume_db = 16.838
 pitch_scale = 2.44
+max_distance = 50000.0
+attenuation = 0.0001

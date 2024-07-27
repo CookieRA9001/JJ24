@@ -25,8 +25,8 @@ collision_mask = 8388608
 script = ExtResource("1_pgtj0")
 speed = 200.0
 damage = 5
-maxHealth = 50.0
-value = 100.0
+maxHealth = 80.0
+value = 120.0
 
 [node name="Body" type="Node2D" parent="."]
 
