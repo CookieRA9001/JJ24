@@ -153,6 +153,8 @@ Spawn a wall of fire in front of the player that blocks and damages enemies.",
 -",
 "id": "passwords",
 "image": SubResource("AtlasTexture_4rvss")
+}, {
+"description": "[center][wave]Password Locks[/wave]-"
 }]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UpgradeMenu"]

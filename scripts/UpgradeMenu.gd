@@ -18,22 +18,37 @@ signal play_click
 	},
 	{
 		"id": "defender",
-		"description": "[center][wave]Defender[/wave]A shield that hurts and pushes enemies.\n-",
+		"description": "[center][wave]Defender[/wave]\nGenerate a shield that circles the player and damages enemies. Increase size, speed and damage with levels.",
 		"image": null
 	},
 	{
 		"id": "tmp",
-		"description": "[center][wave]TMP Chip[/wave]Increases bullet pierce.\n-",
+		"description": "[center][wave]TMP Chip[/wave]\nYour bullets gain piercing, pierce an additional enemy with each level.",
 		"image": null
 	},
 	{
 		"id": "encryption",
-		"description": "[center][wave]Encryption[/wave]\n-",
+		"description": "[center][wave]Encryption[/wave]\nIncrease your bullet damage.",
 		"image": null
 	},
 	{
 		"id": "passwords",
-		"description": "[center][wave]Password Locks[/wave]\n-",
+		"description": "[center][wave]Password Locks[/wave]\nIncreases your max HP (+10%)",
+		"image": null
+	},
+	{
+		"id": "raider",
+		"description": "[center][wave]Data Scan[/wave]\nIncrease your bit collection radius.",
+		"image": null
+	},
+	{
+		"id": "virtualization",
+		"description": "[center][wave]Virtualization[/wave]\nIncrease your movement speed.",
+		"image": null
+	},
+	{
+		"id": "fingerprint",
+		"description": "[center][wave]Virtualization[/wave]\nKill all spawned enemies.",
 		"image": null
 	}
 ]
@@ -68,8 +83,15 @@ func buyItem(i):
 			player.defenderLevelUp()
 		"tmp": 
 			player.tmpLevel += 1
-		"encryption": pass
-		"passwords": pass
+		"encryption":
+			player.damage += 1
+		"passwords":
+			var h = player.maxHealth*0.1
+			player.maxHealth += h
+			player.updateHealth(h)
+		"raider": pass
+		"virtualization": pass
+		"fingerprint": pass
 	visible = false
 	get_tree().paused = false
 

@@ -54,14 +54,13 @@ func updateHealth(delta):
 			exp.value = value/float(exp_count)
 			exp.apply_force(Vector2(randi()%15000-7500,randi()%15000-7500))
 			exp.position = position
-			get_tree().get_root().add_child(exp)
+			get_tree().get_root().call_deferred("add_child", exp)
 			
 		queue_free()
 		return
 	
 	if delta<0:
 		GM.find_child("AudioManager")._on_enemy_play_hit()
-		print("ping")
 		base_body.visible = false
 		damageTimer.start()
 		

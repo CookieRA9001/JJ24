@@ -7,8 +7,8 @@ x fire wall
 x trodgen
 x folders
 * computer worm
-* windows defender shield
-* tmp
+X windows defender shield
+X tmp
 * raidar
 * cyfer
 * passwords
