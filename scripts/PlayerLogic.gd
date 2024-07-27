@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var fire_wall_timer = $UpgradeStuff/FireWallTimer
 @onready var defender = $Defender
 @onready var defender_hurt_box = $Defender/Shield/HurtBox
+@onready var exp_collector = $ExpCollector/CollisionShape2D
 
 @export var maxHealth := 10.0
 @export var health := maxHealth
@@ -105,6 +106,9 @@ func upgrade():
 
 func intiFireWall():
 	fire_wall_timer.start()
+
+func incExpCollection():
+	exp_collector.shape.radius += 70
 
 func defenderLevelUp():
 	if defenderLevel == 0:

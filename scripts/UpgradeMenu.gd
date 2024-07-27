@@ -89,9 +89,12 @@ func buyItem(i):
 			var h = player.maxHealth*0.1
 			player.maxHealth += h
 			player.updateHealth(h)
-		"raider": pass
-		"virtualization": pass
-		"fingerprint": pass
+		"raider":
+			player.incExpCollection()
+		"virtualization":
+			player.speed += 50
+		"fingerprint":
+			killAll()
 	visible = false
 	get_tree().paused = false
 
@@ -101,3 +104,7 @@ func _on_button_1_pressed():
 	buyItem(1)
 func _on_button_2_pressed():
 	buyItem(2)
+	
+func killAll():
+	for member in get_tree().get_nodes_in_group("enemy"):
+		member.updateHealth(-1-player.level)

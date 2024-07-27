@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dlajppe78bl87"]
+[gd_scene load_steps=32 format=3 uid="uid://dlajppe78bl87"]
 
 [ext_resource type="Script" path="res://scripts/GameManger.gd" id="1_nud8i"]
 [ext_resource type="PackedScene" uid="uid://bme8tkqjq7qes" path="res://objects/audio_manager.tscn" id="2_x8chv"]
@@ -12,25 +12,37 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f0g3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcxl7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oktiq"]
 atlas = ExtResource("6_oq557")
-region = Rect2(137.745, 520.261, 112.895, 114.948)
+region = Rect2(135.105, 520, 115.974, 115.974)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3mbx6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8ao3"]
 atlas = ExtResource("6_oq557")
-region = Rect2(786.599, 16.7714, 103.056, 98.815)
+region = Rect2(787.474, 17.9079, 102.118, 98.0132)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38773"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q2ai"]
 atlas = ExtResource("6_oq557")
-region = Rect2(257.125, 646.835, 125.426, 117.975)
+region = Rect2(256.454, 645.513, 128.7, 120.233)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmadf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8mol"]
 atlas = ExtResource("6_oq557")
-region = Rect2(0.761124, 643.284, 119.104, 108.944)
+region = Rect2(0.421112, 639.316, 119.566, 113.408)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4rvss"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfpqq"]
 atlas = ExtResource("6_oq557")
-region = Rect2(132.993, 646.325, 114.05, 121.488)
+region = Rect2(129.598, 644.317, 121.481, 126.446)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p76b2"]
+atlas = ExtResource("6_oq557")
+region = Rect2(2.95535, 511.267, 116.282, 120.233)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tov6d"]
+atlas = ExtResource("6_oq557")
+region = Rect2(397.437, 649.004, 105.935, 123.216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7kqd"]
+atlas = ExtResource("6_oq557")
+region = Rect2(390.631, 517.419, 113.629, 124.184)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxqmw"]
 atlas = ExtResource("6_oq557")
@@ -132,29 +144,42 @@ upgrades = [{
 "description": "[center][wave]Firewall[/wave]
 Spawn a wall of fire in front of the player that blocks and damages enemies.",
 "id": "firewall",
-"image": SubResource("AtlasTexture_kcxl7")
+"image": SubResource("AtlasTexture_oktiq")
 }, {
 "description": "[center][wave]Defender[/wave]
--",
+Generate a shield that circles the player and damages enemies. Increase size, speed and damage with levels.",
 "id": "defender",
-"image": SubResource("AtlasTexture_3mbx6")
+"image": SubResource("AtlasTexture_d8ao3")
 }, {
 "description": "[center][wave]TMP Chip[/wave]
--",
+Your bullets gain piercing, pierce an additional enemy with each level.",
 "id": "tmp",
-"image": SubResource("AtlasTexture_38773")
+"image": SubResource("AtlasTexture_2q2ai")
 }, {
 "description": "[center][wave]Encryption[/wave]
--",
+Increase your bullet damage.",
 "id": "encryption",
-"image": SubResource("AtlasTexture_cmadf")
+"image": SubResource("AtlasTexture_s8mol")
 }, {
 "description": "[center][wave]Password Locks[/wave]
--",
+Increases your max HP (+10%)",
 "id": "passwords",
-"image": SubResource("AtlasTexture_4rvss")
+"image": SubResource("AtlasTexture_kfpqq")
 }, {
-"description": "[center][wave]Password Locks[/wave]-"
+"description": "[center][wave]Data Scanner[/wave]
+Increase your bit collection radius.",
+"id": "raider",
+"image": SubResource("AtlasTexture_p76b2")
+}, {
+"description": "[center][wave]Virtualization[/wave]
+Increase your movement speed.",
+"id": "virtualization",
+"image": SubResource("AtlasTexture_tov6d")
+}, {
+"description": "[center][wave]Fingerprint[/wave]
+Damages all spawned enemies.",
+"id": "fingerprint",
+"image": SubResource("AtlasTexture_a7kqd")
 }]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UpgradeMenu"]

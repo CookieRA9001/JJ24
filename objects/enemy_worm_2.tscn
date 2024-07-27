@@ -1,49 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbi2ve8kbr8mh"]
+[gd_scene load_steps=8 format=3 uid="uid://b8j378x3ku32t"]
 
-[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_kkd2c"]
-[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_h1eey"]
-[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_fksk0"]
+[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_pgtj0"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_ol5q7"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_ykald"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_602o7"]
-atlas = ExtResource("2_h1eey")
-region = Rect2(2.88535, 135.177, 121.758, 116.627)
+atlas = ExtResource("2_ol5q7")
+region = Rect2(770.807, 130.386, 122.565, 126.806)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxw8s"]
-atlas = ExtResource("2_h1eey")
+atlas = ExtResource("2_ol5q7")
 region = Rect2(922.534, 52.4498, 74.1747, 48.0503)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cs4v8"]
-radius = 32.249
+radius = 40.3113
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_as6sj"]
-radius = 53.0094
+radius = 58.5491
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.2, 1.2)
 collision_layer = 8388608
 collision_mask = 8388608
-script = ExtResource("1_kkd2c")
-damage = 1
+script = ExtResource("1_pgtj0")
+speed = 200.0
+damage = 5
+maxHealth = 50.0
+value = 100.0
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Body"]
-modulate = Color(0.348892, 0.919088, 0.290566, 1)
+modulate = Color(0.989072, 0.713174, 0.47217, 1)
 texture_filter = 1
 texture = SubResource("AtlasTexture_602o7")
 
 [node name="Face" type="Sprite2D" parent="Body"]
-modulate = Color(0.348892, 0.919088, 0.290566, 1)
+modulate = Color(0.989072, 0.713174, 0.47217, 1)
 position = Vector2(-2, 3)
 texture = SubResource("AtlasTexture_xxw8s")
 
 [node name="-" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_cs4v8")
 debug_color = Color(0.565936, 0.622628, 0, 0.42)
 
-[node name="HurtBox" parent="." instance=ExtResource("3_fksk0")]
-scale = Vector2(2, 2)
+[node name="HurtBox" parent="." instance=ExtResource("3_ykald")]
+visible = false
+scale = Vector2(2.52418, 2.52418)
 
 [node name="HitBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 16
 

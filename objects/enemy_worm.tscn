@@ -18,11 +18,14 @@ radius = 40.3113
 [sub_resource type="CircleShape2D" id="CircleShape2D_as6sj"]
 radius = 58.5491
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8388608
 collision_mask = 8388608
 script = ExtResource("1_xrh2i")
-damage = 1
+speed = 100.0
+damage = 3
+maxHealth = 10.0
+value = 15.0
 
 [node name="Body" type="Node2D" parent="."]
 

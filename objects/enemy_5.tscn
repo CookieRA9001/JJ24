@@ -1,15 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbi2ve8kbr8mh"]
+[gd_scene load_steps=8 format=3 uid="uid://cehlb7eby2nvi"]
 
-[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_kkd2c"]
-[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_h1eey"]
-[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_fksk0"]
+[ext_resource type="Script" path="res://scripts/EnemyLogic.gd" id="1_n6wpu"]
+[ext_resource type="Texture2D" uid="uid://bpahasgt0dhdr" path="res://assets/jj24.png" id="2_sioy1"]
+[ext_resource type="PackedScene" uid="uid://br01eprafwf0o" path="res://objects/hurt_box.tscn" id="3_supev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_602o7"]
-atlas = ExtResource("2_h1eey")
+atlas = ExtResource("2_sioy1")
 region = Rect2(2.88535, 135.177, 121.758, 116.627)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxw8s"]
-atlas = ExtResource("2_h1eey")
+atlas = ExtResource("2_sioy1")
 region = Rect2(922.534, 52.4498, 74.1747, 48.0503)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cs4v8"]
@@ -19,31 +19,37 @@ radius = 32.249
 radius = 53.0094
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(2.5, 2.5)
 collision_layer = 8388608
 collision_mask = 8388608
-script = ExtResource("1_kkd2c")
-damage = 1
+script = ExtResource("1_n6wpu")
+damage = 3
+maxHealth = 100.0
+value = 120.0
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Body" type="Sprite2D" parent="Body"]
-modulate = Color(0.348892, 0.919088, 0.290566, 1)
+modulate = Color(0.711899, 0.267924, 0.921298, 1)
 texture_filter = 1
 texture = SubResource("AtlasTexture_602o7")
 
 [node name="Face" type="Sprite2D" parent="Body"]
-modulate = Color(0.348892, 0.919088, 0.290566, 1)
+modulate = Color(0.711899, 0.267924, 0.921298, 1)
 position = Vector2(-2, 3)
 texture = SubResource("AtlasTexture_xxw8s")
 
 [node name="-" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_cs4v8")
 debug_color = Color(0.565936, 0.622628, 0, 0.42)
 
-[node name="HurtBox" parent="." instance=ExtResource("3_fksk0")]
+[node name="HurtBox" parent="." instance=ExtResource("3_supev")]
+visible = false
 scale = Vector2(2, 2)
 
 [node name="HitBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 16
 
